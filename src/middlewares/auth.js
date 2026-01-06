@@ -42,6 +42,14 @@ export const admin = (req, res, next) => {
     }
 }
 
+export const seller = (req, res, next) => {
+    if (req.user && req.user.role === "seller"){
+        next();
+    } else {
+        res.status(403).json({message: "Not a user"})
+    }
+}
+
 export const user = (req, res, next) => {
     if (req.user && req.user.role === "user"){
         next();
