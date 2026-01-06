@@ -11,7 +11,7 @@ const userSchema = new Schema({
         unique: true,
     },
     phoneNumber: {
-        type: String,
+        type: Number,
         required: false,
         unique: true,
     },
@@ -26,8 +26,7 @@ const userSchema = new Schema({
 
      role : {
         type: String,
-        required: true,
-        enum: ['admin', 'user', 'seller'],
+        enum: ['admin', 'user',"seller"],
         default: 'user',
      },
      cart: [
