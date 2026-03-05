@@ -1,6 +1,11 @@
+import 'dotenv/config';
+import dns from 'dns';
 import { MongoClient } from 'mongodb';
 import bcrypt from 'bcryptjs';
-import 'dotenv/config';
+
+// ensure DNS resolution works, same fix as in index.js
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 
 async function Seller1() {
   const client = new MongoClient(process.env.MONGO_URL);
@@ -14,7 +19,7 @@ async function Seller1() {
     const existingseller = await users.findOne({ emailAddress: sellerEmail });
 
     if (existingseller) {
-      console.log("ℹ️ Admin already exists. Skipping seeding.");
+      console.log("ℹ️ seller already exists. Skipping seeding.");
       return;
     }
 

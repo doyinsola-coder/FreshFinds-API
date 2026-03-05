@@ -35,11 +35,20 @@ const products = [
   },
 ];
 
-mongoose.connect(process.env.MONGO_URL).then(async () => {
-    console.log("Connected to DB ✅");
-    await Product.deleteMany(); // optional: clears old products
-    await Product.insertMany(products); // inserts demo data
-    console.log("Products seeded successfully ✅");
-    mongoose.connection.close();
-  })
-  .catch((err) => console.error(err));
+const seed = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("DB Connected");
+
+    await Product.deleteMany();
+    await Product.insertMany(products);
+
+    console.log("Seeding done");
+    process.exit();
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+
+seed();
