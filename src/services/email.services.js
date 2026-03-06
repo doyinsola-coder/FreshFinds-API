@@ -6,10 +6,10 @@ configDotenv()
 const sendEmail = async (to, subject, html) => {
     try {
         const transporter = nodemailer.createTransport({
-            service: "gmail", // tells nodemailer to use Gmail’s SMTP
+            service: "gmail", 
             auth: {
-                user: process.env.GMAIL_USER, // your Gmail address
-                pass: process.env.GMAIL_PASS, // app password (not your actual Gmail password!)
+                user: process.env.GMAIL_USER, 
+                pass: process.env.GMAIL_PASS, 
             },
         });
 
